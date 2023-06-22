@@ -1,14 +1,18 @@
-const inputEl = document.getElementById("validation-input");
-inputEl.addEventListener("blur", onBlurBorderColor);
+let inputVal = document.getElementById("validation-input");
 
-function onBlurBorderColor(event) {
-	const inputDataLength = Number(inputEl.dataset.lenght);
-	const inputValueLenght = Number(inputEl.value.trim().lenght);
-	if (inputValueLenght === inputDataLength) {
-		inputEl.classList.add("valid");
-		inputEl / classList.remove("invalid");
-	} else {
-		inputEl.classList.remove("valid");
-		inputEl.classList.add("invalid");
+let totalLenght = inputVal.getAttribute("data-length");
+let intTotallenght = parseInt(totalLenght, 10);
+
+inputVal.oninput = function () {
+	if (inputVal.value.length === intTotallenght) {
+		inputVal.classList.remove("invalid");
+		inputVal.classList.add("valid");
 	}
-}
+	if (inputVal.value.length === 0) {
+		inputVal.classList.remove("valid");
+		inputVal.classList.remove("invalid");
+	}
+	if (inputVal.value.length !== intTotallenght && inputVal.value.length !== 0) {
+		inputVal.classList.add("invalid");
+	}
+};
